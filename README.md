@@ -2,6 +2,6 @@
 
 ### Build
 
-  make        - builds app
-  make test   - builds tests
+    make        - builds app.
+    make test   - builds tests.
   
