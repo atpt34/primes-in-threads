@@ -1,6 +1,7 @@
 #include "Interval.h"
 #include "Primes_Calculator.h"
 #include "Xml_Loader.h"
+#include "settings.h"
 
 #include <string>
 #include <vector>
@@ -43,20 +44,21 @@ TEST(Xml_LoaderTest, Valid_Xml) {
   const std::string input_filepath = "test1.xml";
   Xml_Loader xl(input_filepath);
   std::vector<Interval> vi{Interval(100,200), Interval(700, 900)};
-  ASSERT_EQ(vi, xl.get_intervals());
+  ASSERT_EQ(vi, xl.parse<Interval>(interval_xs));
 }
 
 TEST(Xml_LoaderTest, Empty_Intervals_In_Xml) {
   const std::string input_filepath = "test2.xml";
   Xml_Loader xl(input_filepath);
   std::vector<Interval> vi;
-  ASSERT_EQ(vi, xl.get_intervals());
+  ASSERT_EQ(vi, xl.parse<Interval>(interval_xs));
 }
 
 TEST(Xml_LoaderTest, Invalid_Interval_Xml) {
   const std::string input_filepath = "test3.xml";
   try {
     Xml_Loader xl(input_filepath);
+    xl.parse<Interval>(interval_xs);
     FAIL() << "Expected Xml_Exception";
   } catch (Xml_Exception& xe) {
     SUCCEED();
