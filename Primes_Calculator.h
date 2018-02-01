@@ -11,13 +11,10 @@
 class Primes_Calculator {
 public:
   Primes_Calculator() = default;
-  Primes_Calculator(const std::vector<Interval>& vi);
   Primes_Calculator(const Primes_Calculator&);
-  Primes_Calculator(Primes_Calculator&&) = default;
-  ~Primes_Calculator() = default;
-
   Primes_Calculator& operator=(const Primes_Calculator&);
-  Primes_Calculator& operator=(Primes_Calculator&&) = default;
+
+  void calculate(const std::vector<Interval>& vi);
 
   const std::vector<int>& get_primes();
 

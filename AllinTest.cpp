@@ -69,21 +69,24 @@ TEST(Xml_LoaderTest, Invalid_Interval_Xml) {
 
 TEST(Primes_CalculatorTest, One_Interval) {
   std::vector<Interval> vi{ Interval{0, 30} };
-  Primes_Calculator pc(vi);
+  Primes_Calculator pc;
+  pc.calculate(vi);
   std::vector<int> vp{2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
   ASSERT_EQ(vp, pc.get_primes());
 }
 
 TEST(Primes_CalculatorTest, Two_Disjoin_Intervals) {
   std::vector<Interval> vi{ Interval{0, 20}, Interval{21, 40} };
-  Primes_Calculator pc(vi);
+  Primes_Calculator pc;
+  pc.calculate(vi);
   std::vector<int> vp{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
   ASSERT_EQ(vp, pc.get_primes());
 }
 
 TEST(Primes_CalculatorTest, Two_Overlapping_Intervals) {
   std::vector<Interval> vi{ Interval{10, 40}, Interval{0, 29} };
-  Primes_Calculator pc(vi);
+  Primes_Calculator pc;
+  pc.calculate(vi);
   std::vector<int> vp{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
   ASSERT_EQ(vp, pc.get_primes());
 }

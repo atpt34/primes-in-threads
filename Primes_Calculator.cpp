@@ -11,16 +11,6 @@ using std::distance;
 using std::sort;
 using std::unique;
 
-Primes_Calculator::Primes_Calculator(const vector<Interval>& vi)
-{
-  if (vi.size() > 1) {
-    par_calc(vi); 
-  } else {
-    seq_calc(vi);
-  }
-  eliminate_duplicates();
-}
-
 Primes_Calculator::Primes_Calculator(const Primes_Calculator& pc) 
   : m_primes(pc.m_primes) 
 {
@@ -30,6 +20,16 @@ Primes_Calculator& Primes_Calculator::operator=(const Primes_Calculator& pc)
 {
   m_primes = vector<int>(pc.m_primes);
   return *this;
+}
+
+void Primes_Calculator::calculate(const vector<Interval>& vi)
+{
+  if (vi.size() > 1) {
+    par_calc(vi); 
+  } else {
+    seq_calc(vi);
+  }
+  eliminate_duplicates();
 }
 
 const vector<int>& Primes_Calculator::get_primes()

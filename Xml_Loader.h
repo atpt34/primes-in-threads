@@ -14,12 +14,6 @@ class Xml_Loader {
 public:
   Xml_Loader() = default;
   Xml_Loader(const std::string& name);
-  Xml_Loader(const Xml_Loader&) = default;
-  Xml_Loader(Xml_Loader&&) = default;
-  ~Xml_Loader() = default;
-
-  Xml_Loader& operator=(const Xml_Loader&) = default;
-  Xml_Loader& operator=(Xml_Loader&&) = default;
 
   void load(const std::string& name);
   

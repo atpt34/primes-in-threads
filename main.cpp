@@ -3,8 +3,7 @@
 #include "Primes_Calculator.h"
 #include "settings.h"
 #include <iostream>
-#include <vector>
-#include <string>
+#include <stdexcept>
 
 int main(int argc, char* argv[])
 {
@@ -16,10 +15,13 @@ int main(int argc, char* argv[])
       std::cout << "You can provide xml file as an argument\n";
       xl.load("src.xml");
     }
-    Primes_Calculator pc(xl.parse<Interval>(interval_xs));
+    Primes_Calculator pc;
+    pc.calculate(xl.parse<Interval>(interval_xs));
     xl.save("out.xml", primes_xs, pc.get_primes());
 
-  } catch (Xml_Exception& xe) {
-    std::cout << xe.message << '\n';
+  } catch (const Xml_Exception& xe) {
+    std::cerr << xe.message << '\n';
+  } catch (const std::runtime_error& re) {
+    std::cerr << re.what();
   }
 }
